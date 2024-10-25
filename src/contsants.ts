@@ -1,6 +1,7 @@
 import { IEmblem, IHunter } from "./types";
 
 export const HUNTERS_LOCAL_STORAGE_KEY = "huntersData";
+export const EMBLEMS_LOCAL_STORAGE_KEY = "emblemsData";
 
 export const HUNTERS: IHunter[] = [
   {

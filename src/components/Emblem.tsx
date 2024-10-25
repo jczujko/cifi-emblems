@@ -1,3 +1,4 @@
+import { EMBLEMS_LOCAL_STORAGE_KEY } from "../contsants";
 import { IEmblem, ReactSetStateAction } from "../types";
 import Button from "../ui/button";
 import {
@@ -31,7 +32,7 @@ export default function Emblem({
       } else {
         emblemToUpdate.level += value;
       }
-
+      localStorage.setItem(EMBLEMS_LOCAL_STORAGE_KEY, JSON.stringify(newState));
       return newState;
     });
 
@@ -40,10 +41,10 @@ export default function Emblem({
       <div className="grid md:col-span-2 col-start-1 justify-center font-bold">
         {emblem.name}
       </div>
-      <div className="grid md:col-span-2 col-start-1 justify-center">
+      <div className="grid md:col-span-2 col-start-1 font-bold justify-center">
         {`Level: ${emblem.level}`}
       </div>
-      <div className="grid md:col-span-2 col-start-1 justify-center">
+      <div className="grid md:col-span-2 col-start-1 font-bold justify-center">
         {`Emblems spent: ${calculateEmblemCumulativeCost(emblem)}`}
       </div>
       <div className="grid md:col-span-2 col-start-1 justify-center font-bold">

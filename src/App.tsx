@@ -1,5 +1,10 @@
-import { EMBLEMS, HUNTERS, HUNTERS_LOCAL_STORAGE_KEY } from "./contsants";
-import { IEmblem, IHunter } from "./types";
+import {
+  EMBLEMS,
+  EMBLEMS_LOCAL_STORAGE_KEY,
+  HUNTERS,
+  HUNTERS_LOCAL_STORAGE_KEY,
+} from "./contsants";
+import { EmblemName, IEmblem, IHunter } from "./types";
 import Hunter from "./components/Huner";
 import { useMemo, useState } from "react";
 import Emblem from "./components/Emblem";
@@ -29,7 +34,28 @@ function App() {
     return huntersState;
   });
 
-  const [emblemsState, setEmblemsState] = useState<IEmblem[]>(EMBLEMS);
+  const [emblemsState, setEmblemsState] = useState<IEmblem[]>((): IEmblem[] => {
+    const loadedEmblemsData = localStorage.getItem(EMBLEMS_LOCAL_STORAGE_KEY);
+    if (!loadedEmblemsData) {
+      return EMBLEMS;
+    }
+    const emblemsState: IEmblem[] = JSON.parse(loadedEmblemsData);
+    if (emblemsState.length < EMBLEMS.length) {
+      const savedEmblemsNames: string[] = emblemsState.map(
+        (emblem: IEmblem): string => emblem.name
+      );
+      const newEmblems = EMBLEMS.filter(
+        (emblem: IEmblem) => !savedEmblemsNames.includes(emblem.name)
+      );
+      const newEmblemsState: IEmblem[] = [...emblemsState, ...newEmblems];
+      localStorage.setItem(
+        EMBLEMS_LOCAL_STORAGE_KEY,
+        JSON.stringify(newEmblemsState)
+      );
+      return newEmblemsState;
+    }
+    return emblemsState;
+  });
 
   const sumOfHunterLevels: number = useMemo(
     (): number =>
