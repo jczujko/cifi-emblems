@@ -4,7 +4,7 @@ import {
   HUNTERS,
   HUNTERS_LOCAL_STORAGE_KEY,
 } from "./contsants";
-import { EmblemName, IEmblem, IHunter } from "./types";
+import { IEmblem, IHunter } from "./types";
 import Hunter from "./components/Huner";
 import { useMemo, useState } from "react";
 import Emblem from "./components/Emblem";
