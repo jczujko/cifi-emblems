@@ -4,6 +4,7 @@ import Button from "../ui/button";
 import {
   calculateEmblemCumulativeCost,
   getEmblemBonus,
+  getNextLevelCost,
 } from "../utils/emblems";
 import { formatNumber } from "../utils/numbers";
 
@@ -37,12 +38,15 @@ export default function Emblem({
     });
 
   return (
-    <div className="border-2 border-blue-800 bg-blue-900 gap-2 rounded-md mb-1 grid grid-cols-2 md:grid-rows-8 grid-rows-4 select-none mt-2">
-      <div className="grid md:col-span-2 col-start-1 justify-center font-bold">
+    <div className="border-2 border-blue-800 bg-blue-900 gap-2 rounded-md mb-1 grid grid-cols-2 md:grid-rows-9 grid-rows-4 select-none mt-2">
+      <div className="grid md:col-span-2 col-start-1 justify-center font-bold md:border-b-4 border-blue-800">
         {emblem.name}
       </div>
-      <div className="grid md:col-span-2 col-start-1 font-bold justify-center">
+      <div className="grid md:col-span-2 col-start-1 font-bold justify-center ">
         {`Level: ${emblem.level}`}
+      </div>
+      <div className="grid font-bold justify-center md:col-span-2">
+        {`Next level cost: ${getNextLevelCost(emblem)}`}
       </div>
       <div className="grid md:col-span-2 col-start-1 font-bold justify-center">
         {`Emblems spent: ${calculateEmblemCumulativeCost(emblem)}`}
@@ -50,7 +54,7 @@ export default function Emblem({
       <div className="grid md:col-span-2 col-start-1 justify-center font-bold">
         {`Bonus: x${formatNumber(getEmblemBonus(emblem, sumOfHunterLevels))}`}
       </div>
-      <div className="grid md:col-span-2 md:row-span-4 grid-cols-2 grid-rows-2 row-start-1 col-start-2 row-span-4">
+      <div className="grid md:col-span-2 md:row-span-4 grid-cols-2 grid-rows-2 row-start-1 col-start-2 row-span-5">
         <Button
           text={"+1"}
           onClick={(): void => updateEmblemLevel(emblem, 1)}

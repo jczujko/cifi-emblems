@@ -18,3 +18,6 @@ export const getEmblemBonus = (emblem: IEmblem, sumOfHuntersLevels: number) =>
       sumOfHuntersLevels
     )}`
   );
+
+export const getNextLevelCost = (emblem: IEmblem) =>
+  floor(evaluate(`${emblem.baseCost}+${emblem.increment}*${emblem.level}`));
