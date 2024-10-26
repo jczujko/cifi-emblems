@@ -17,8 +17,8 @@ function Hunter({ name, level, setHuntersState }: Props) {
         return prevState;
       }
       item.level += value;
-      if (item.level < 1) {
-        item.level = 1;
+      if (item.level < 0) {
+        item.level = 0;
       }
       localStorage.setItem(HUNTERS_LOCAL_STORAGE_KEY, JSON.stringify(newState));
       return newState;

@@ -6,11 +6,15 @@ export const EMBLEMS_LOCAL_STORAGE_KEY = "emblemsData";
 export const HUNTERS: IHunter[] = [
   {
     name: "Borge",
-    level: 1,
+    level: 0,
   },
   {
     name: "Ozzy",
-    level: 1,
+    level: 0,
+  },
+  {
+    name: "Knox",
+    level: 0,
   },
 ];
 
