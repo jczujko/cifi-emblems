@@ -78,7 +78,7 @@ function App() {
 
   return (
     <div className="bg-blue-950 h-screen text-blue-50 p-2 overflow-scroll">
-      <div className="md:grid md:grid-cols-2 md:w-1/2 gap-3 md:m-auto">
+      <div className="md:grid md:grid-cols-3 md:w-1/2 gap-3 md:m-auto">
         {huntersState.map((hunter: IHunter) => (
           <Hunter
             key={`hunter-${hunter.name}`}
